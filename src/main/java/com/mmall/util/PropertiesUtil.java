@@ -3,11 +3,9 @@ package com.mmall.util;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Properties;
-
 
 public class PropertiesUtil {
 
@@ -34,14 +32,10 @@ public class PropertiesUtil {
     }
 
     public static String getProperty(String key,String defaultValue){
-
         String value = props.getProperty(key.trim());
         if(StringUtils.isBlank(value)){
             value = defaultValue;
         }
         return value.trim();
     }
-
-
-
 }

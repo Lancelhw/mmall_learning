@@ -11,8 +11,8 @@
 
     <context:component-scan base-package="com.mmall" annotation-config="true"/>
 
-    <bean id="propertyConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <!--加载配置文件datasource.properties-->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="order" value="2"/>
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
         <property name="locations">
@@ -23,7 +23,7 @@
         <property name="fileEncoding" value="utf-8"/>
     </bean>
 
-
+    <!--配置数据源-->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${db.driverClassName}"/>
         <property name="url" value="${db.url}"/>
@@ -60,22 +60,19 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations" value="classpath*:mappers/*Mapper.xml"></property>
-
         <!-- 分页插件 -->
         <property name="plugins">
             <array>
                 <bean class="com.github.pagehelper.PageHelper">
                     <property name="properties">
-                        <value>
-                            dialect=mysql
-                        </value>
+                        <value>dialect=mysql</value>
                     </property>
                 </bean>
             </array>
         </property>
-
     </bean>
 
+    <!--扫描com.mmall.dao包中文件并加入到容器-->
     <bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.mmall.dao"/>
     </bean>
@@ -87,6 +84,5 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="rollbackOnCommitFailure" value="true"/>
     </bean>
-
 
 </beans>

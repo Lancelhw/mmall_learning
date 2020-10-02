@@ -4,17 +4,17 @@ import com.mmall.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer id);   //根据主键ID删除数据
 
-    int insert(User record);
+    int insert(User record);   //插入数据，使用User对象
 
-    int insertSelective(User record);
+    int insertSelective(User record);   //插入部分选择，使用User对象
 
-    User selectByPrimaryKey(Integer id);
+    User selectByPrimaryKey(Integer id);   //根据主键ID进行查询
 
-    int updateByPrimaryKeySelective(User record);
+    int updateByPrimaryKeySelective(User record);   //根据主键ID选择部分更新，使用User对象
 
-    int updateByPrimaryKey(User record);
+    int updateByPrimaryKey(User record);   //根据主键ID选择更新，使用User对象
 
     int checkUserName(String username);
 
